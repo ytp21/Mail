@@ -60,12 +60,9 @@ function submit_email(event) {
       const message = Object.values(result);
 
       if (result.error) {
-        document.querySelector('#a').innerHTML = message;
-      } else if (result.message) {
-        load_mailbox('inbox');
-        document.querySelector('#a').innerHTML = `shit`;
+        document.querySelector('#alert-msg').innerHTML = `<div class="alert alert-danger d-flex align-items-center alert-dismissable fade show" role="alert"><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg><div>${message}</div><button type="button" class="btn-close" style="margin-left: auto; margin-right: 5px;" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
       } else {
-        console.log("Error - Refer to function submit_email")
+        console.log("Error - Refer to function submit_email");
       }
   });
 }
