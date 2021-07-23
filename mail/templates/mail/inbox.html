@@ -1,0 +1,83 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="d-flex flex-row body-style">
+    <div class="nav-style">
+        <div class="b-example-divider">
+            <div class="d-flex flex-column flex-shrink-0 p-3">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <button id="inbox" class="nav-link link-dark w-100 text-start active" aria-current="page">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-inbox mb-1 me-2" viewBox="0 0 16 16">
+                                <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4H4.98zm9.954 5H10.45a2.5 2.5 0 0 1-4.9 0H1.066l.32 2.562a.5.5 0 0 0 .497.438h12.234a.5.5 0 0 0 .496-.438L14.933 9zM3.809 3.563A1.5 1.5 0 0 1 4.981 3h6.038a1.5 1.5 0 0 1 1.172.563l3.7 4.625a.5.5 0 0 1 .105.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374l3.7-4.625z"/>
+                            </svg>
+                            Inbox
+                        </button>
+                    </li>
+                    <li>
+                        <button id="sent" class="nav-link link-dark w-100 text-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor mb-1 me-2" viewBox="0 0 16 16">
+                                <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"/>
+                            </svg>
+                            Sent
+                        </button>
+                    </li>
+                    <li>
+                        <button id="archived" class="nav-link link-dark w-100 text-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive mb-1 me-2" viewBox="0 0 16 16">
+                                <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                            </svg>
+                            Archived
+                        </button>
+                    </li>
+                </ul>
+                <button id="compose" class="my-4 mx-auto compose-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square mb-1 me-2" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                    Compose
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="p-3 content-style">
+        <div id="emails-view">
+        </div>
+
+        <div id="email-content-view">
+        </div>
+
+        <div id="compose-view">
+            <h4 class="mb-3">New Email</h4>
+            <form id="compose-form" class="p-2 mx-4">
+                <div class="mb-2 row">
+                    <label for="staticEmail" class="col-sm-1 col-form-label">From:</label>
+                    <div class="col-sm-11">
+                      <input type="text" readonly class="form-control-plaintext px-3" id="useremail" value="{{ request.user.email }}">
+                    </div>
+                </div>
+                <div class="mb-5 row">
+                    <label for="compose-recipients" class="col-sm-1 col-form-label">To:</label>
+                    <div class="col-sm-11">
+                      <input type="text" class="form-control px-3" id="compose-recipients">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" id="compose-subject" placeholder="Subject">
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" id="compose-body" placeholder="Body" rows="8"></textarea>
+                </div>
+                <input id="compose-button" type="submit" class="btn btn-primary"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}

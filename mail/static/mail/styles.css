@@ -1,0 +1,105 @@
+html, body {
+    width: 100%;
+}
+
+/* CSS for sign-in */
+.sign-in {
+    height: -webkit-calc(100vh - 81px);
+}
+
+/* CSS for layout.html */
+.container-fluid {
+    width: 100%;
+}
+
+.header-style {
+    height: 80px;
+}
+
+.body-style {
+    width: 100%;
+}
+
+.nav-style {
+    width: 270px;
+}
+
+.content-style {
+    width: -webkit-calc(100% - 270px);
+}
+
+.compose-button {
+    border-radius: 100rem;
+    padding: 1rem;
+    font-size: 1rem;
+    padding: .5rem 3rem;
+    color: black;
+    border: solid 2px transparent;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(45deg, rgb(0, 217, 255) ,rgb(13, 13, 245));;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 2px 1000px 1px #fff inset;
+}
+  
+/* CSS for inbox.js */
+
+.email-msg {
+    display: block;
+    line-height: 38px;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: none;
+    height: 40px;
+    cursor: pointer;
+    font-size: 15px;
+    background-color: #F0F0F0;
+}
+
+.email-msg:last-child {
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.email-person { 
+    display: inline-block;
+    overflow: hidden;
+    margin-left: 25px;
+    width: 160px;
+}
+
+.email-subject {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 480px;
+    margin-left: 50px;
+    margin-right: 80px;
+}
+
+@media only screen and (max-width: 1350px) {
+    .email-subject {
+        width: calc(38vw - 120px);
+        min-width: 250px;
+    }
+}
+
+.email-time {
+    float: right;
+    margin-right: 25px;
+}
+
+.subject-msg {
+    font-size: 27px;
+}
+
+.from-msg {
+    font-size: 16px;
+}
+
+.time-msg {
+    float: right;
+    font-size: 14px;
+    color: rgb(107, 107, 107);
+}
+
+.to-msg {
+    font-size: 15px;
+}
